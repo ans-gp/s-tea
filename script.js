@@ -31,7 +31,7 @@ const menuItems = [
         name: "Milk Tea",
         description: "Milkshake cokelat dengan whipped cream",
         price: 6000,
-        image: "milk tea.jpg",
+        image: "Milk tea.jpg",
         category: "Teh"
     },
     {
@@ -280,4 +280,5 @@ function showToast(message, isError = false) {
 // Format Price
 function formatPrice(price) {
     return price.toLocaleString('id-ID');
+
 }
