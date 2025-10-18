@@ -22,7 +22,7 @@ const menuItems = [
         name: "Lemon Tea",
         description: "Teh hijau Jepang premium dengan susu",
         price: 5000,
-        image: "https://images.unsplash.com/photo-1536013266787-7e06d13b9c3a?w=500&q=80",
+        image: "Lemon tea.jpg",
         category: "Teh",
         popular: true
     },
