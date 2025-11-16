@@ -28,7 +28,7 @@ const menuItems = [
     },
     {
         id: 4,
-        name: "Milk Tea",
+        name: "Milk tea",
         description: "Teh yang dicampur susu dengan rasa manis dan lembut",
         price: 6000,
         image: "milk tea.jpg",
@@ -280,4 +280,5 @@ function showToast(message, isError = false) {
 // Format Price
 function formatPrice(price) {
     return price.toLocaleString('id-ID');
+
 }
