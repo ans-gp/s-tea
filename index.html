@@ -1,0 +1,663 @@
+<!DOCTYPE html> 
+<html lang="id"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>S-tea🍃 - Minuman Teh Premium</title> 
+    <meta name="description" content="Kedai teh berkualitas dengan berbagai pilihan teh premium. Pesan sekarang dan nikmati pengalaman teh terbaik!"> 
+    <link rel="stylesheet" href="style.css">
+</head> 
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand" onclick="navigateTo('home')">
+                <span>☕</span>
+                <span>S-tea🍃</span>
+            </div>
+            <div class="navbar-menu">
+                <a class="navbar-link active" onclick="navigateTo('home')">Home</a>
+                <a class="navbar-link" onclick="navigateTo('menu')">Menu</a>
+                <a class="navbar-link" onclick="navigateTo('pesan')">Pesan</a>
+                <div class="navbar-cart" onclick="navigateTo('pesan')">
+                    🛒
+                    <span class="cart-badge" id="cartBadge">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <!-- Hero Section --> 
+        <section class="hero"> 
+            <div class="hero-overlay"></div> 
+            <div class="hero-content"> 
+                <div class="hero-icon">☕</div>
+                <h1 class="hero-title">S-tea🍃</h1>
+                <p class="hero-subtitle">Nikmati setiap tegukan minuman segar berkualitas premium, dibuat dengan cinta untuk setiap pelanggan</p>
+                <div class="hero-buttons"> 
+                    <button class="btn btn-hero" onclick="navigateTo('menu')">Lihat Menu Lengkap</button> 
+                    <button class="btn btn-outline" onclick="navigateTo('pesan')">Pesan Sekarang</button> 
+                </div> 
+            </div> 
+        </section> 
+     
+        <!-- About Section --> 
+        <section class="section section-muted"> 
+            <div class="container"> 
+                <div class="section-header"> 
+                    <h2 class="section-title">Tentang Kami</h2> 
+                    <p class="section-subtitle">Selamat datang di Kedai Teh S-TEA 🍃 Tempat di mana setiap tegukan menghadirkan ketenangan dan cerita. Kami menyajikan teh pilihan terbaik — dari racikan tradisional hingga rasa modern yang unik.</p> 
+                </div> 
+                 
+                <div class="features-grid"> 
+                    <div class="feature-card"> 
+                        <div class="feature-icon">❤</div> 
+                        <h3 class="feature-title">Dibuat dengan Cinta</h3> 
+                        <p class="feature-description">Setiap minuman kami dibuat dengan perhatian khusus untuk memberikan pengalaman terbaik</p> 
+                    </div> 
+                     
+                    <div class="feature-card"> 
+                        <div class="feature-icon">🏆</div> 
+                        <h3 class="feature-title">Kualitas Premium</h3> 
+                        <p class="feature-description">Kami hanya menggunakan bahan-bahan berkualitas tinggi dari sumber terpercaya</p> 
+                    </div> 
+                     
+                    <div class="feature-card"> 
+                        <div class="feature-icon">🍃</div> 
+                        <h3 class="feature-title">Bahan Segar</h3> 
+                        <p class="feature-description">Bahan segar dan alami pilihan untuk kesehatan Anda</p> 
+                    </div> 
+                </div> 
+            </div> 
+        </section> 
+
+        <!-- Popular Menu Section --> 
+        <section class="section"> 
+            <div class="container"> 
+                <div class="section-header"> 
+                    <h2 class="section-title">⭐ Menu Populer</h2> 
+                    <p class="section-subtitle">Pilihan favorit pelanggan kami yang paling banyak dipesan</p> 
+                </div> 
+                 
+                <div class="menu-grid" id="popularMenuGrid"></div>
+                
+                <div style="text-align: center; margin-top: 3rem;">
+                    <button class="btn btn-primary" onclick="navigateTo('menu')">Lihat Semua Menu →</button>
+                </div>
+            </div> 
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="section section-muted">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">📸 Galeri Kami</h2>
+                    <p class="section-subtitle">Lihat koleksi foto minuman dan suasana kedai kami yang nyaman</p>
+                </div>
+                
+                <div class="gallery-grid" id="galleryGrid"></div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">💬 Testimoni Pelanggan</h2>
+                    <p class="section-subtitle">Apa kata pelanggan kami tentang S-TEA</p>
+                </div>
+
+                <div class="testimonial-container">
+                    <div class="testimonial-slider" id="testimonialSlider"></div>
+                    
+                    <div class="testimonial-nav">
+                        <button class="testimonial-btn" id="prevBtn" onclick="previousTestimonial()">‹</button>
+                        <div class="testimonial-dots" id="testimonialDots"></div>
+                        <button class="testimonial-btn" id="nextBtn" onclick="nextTestimonial()">›</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- MENU PAGE -->
+    <div id="menu" class="page">
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">📋 Menu Lengkap</h2>
+                    <p class="section-subtitle">Semua pilihan minuman berkualitas premium kami</p>
+                </div>
+                
+                <div class="menu-grid" id="fullMenuGrid"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PESAN PAGE -->
+    <div id="pesan" class="page">
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">🛒 Pesanan Anda</h2>
+                    <p class="section-subtitle">Tinjau pesanan dan kirim ke WhatsApp kami</p>
+                </div>
+                
+                <div class="card" style="max-width: 900px; margin: 0 auto;">
+                    <div class="card-header">
+                        <h3 class="card-title">Keranjang Pesanan</h3>
+                    </div>
+                    <div class="card-content">
+                        <div id="cartItems" class="cart-items">
+                            <p class="empty-cart">Keranjang Anda masih kosong. Silakan pilih minuman dari menu.</p>
+                        </div>
+                    </div>
+                    <div class="total-section">
+                        <span class="total-label">Total:</span>
+                        <span class="total-amount" id="totalAmount">Rp 0</span>
+                    </div>
+                    <div style="padding: 1.5rem; border-top: 1px solid var(--color-border);">
+                        <button class="btn btn-primary btn-full" onclick="sendToWhatsApp()" id="orderBtn" disabled>
+                            📱 Pesan via WhatsApp
+                        </button>
+                        <p style="text-align: center; margin-top: 1rem; color: var(--color-muted-foreground); font-size: 0.875rem;">
+                            Pesanan akan dikirim ke WhatsApp admin untuk diproses
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+ 
+    <!-- Footer --> 
+    <footer class="footer"> 
+        <div class="container"> 
+            <div class="footer-grid"> 
+                <div class="footer-section"> 
+                    <div class="footer-brand"> 
+                        <span class="footer-icon">☕</span> 
+                        <h3 class="footer-title">S-TEA</h3> 
+                    </div> 
+                    <p class="footer-text">Kedai teh berkualitas dengan cita rasa istimewa untuk setiap pelanggan kami</p> 
+                </div> 
+ 
+                <div class="footer-section"> 
+                    <h4 class="footer-heading">Kontak Kami</h4> 
+                    <div class="footer-contact"> 
+                        <p>📍 Jl. Dr. Soeparno No.29, Purwokerto Wetan</p> 
+                        <p>📞 +62 812-3456-7890</p> 
+                        <p>✉ S-TEA@gmail.com</p> 
+                    </div> 
+                </div> 
+ 
+                <div class="footer-section"> 
+                    <h4 class="footer-heading">Jam Operasional</h4> 
+                    <div class="footer-hours"> 
+                        <p>Senin - Jumat: 08.00 - 15.00</p> 
+                        <p>Sabtu - Minggu: 07.00 - 14.00</p> 
+                        <p class="footer-ready">Siap melayani pesanan Anda!</p> 
+                    </div> 
+                </div> 
+            </div> 
+ 
+            <div class="footer-bottom"> 
+                <p>Copyright &copy; 2025 S-TEA</p> 
+            </div> 
+        </div> 
+    </footer> 
+ 
+    <!-- Toast Notification --> 
+    <div id="toast" class="toast"></div> 
+ 
+    <script>
+// NOMOR WHATSAPP ADMIN (ganti dengan nomor Anda)
+const ADMIN_WHATSAPP = "6282133736177"; // Format: 62xxx (tanpa +)
+
+// Menu Data
+const menuItems = [
+    {
+        id: 1,
+        name: "Original",
+        description: "Teh manis dengan es",
+        price: 2500,
+        image: "original.jpg",
+        category: "Teh",
+        popular: true
+    },
+    {
+        id: 2,
+        name: "Thai Tea",
+        description: "Teh Thailand manis dengan aroma rempah dan susu yang creamy",
+        price: 5000,
+        image: "thai tea.jpg",
+        category: "Teh",
+        popular: true
+    },
+    {
+        id: 3,
+        name: "Lemon Tea",
+        description: "Teh segar dengan rasa asam manis dari lemon",
+        price: 5000,
+        image: "Lemon tea.jpg",
+        category: "Teh"
+    },
+    {
+        id: 4,
+        name: "Milk Tea",
+        description: "Teh yang dicampur susu dengan rasa manis dan lembut",
+        price: 6000,
+        image: "milk tea.jpg",
+        category: "Teh"
+    },
+    {
+        id: 5,
+        name: "Green Tea",
+        description: "Teh hijau yang creamy dengan rasa khas yang ringan",
+        price: 7500,
+        image: "green tea.jpg",
+        category: "Teh",
+        popular: true
+    },
+    {
+        id: 6,
+        name: "Choco Milk",
+        description: "Susu manis dengan rasa cokelat yang lembut",
+        price: 7500,
+        image: "choco milk.jpg",
+        category: "Milkshake",
+        popular: true
+    },
+    {
+        id: 7,
+        name: "Cappucino",
+        description: "Kopi dengan foam susu yang creamy dan lembut",
+        price: 8000,
+        image: "cappucino.jpg",
+        category: "Kopi"
+    },
+    {
+        id: 8,
+        name: "Red Velvet",
+        description: "Minuman creamy berwarna merah dengan rasa manis",
+        price: 8000,
+        image: "red velvet.jpg",
+        category: "Milkshake"
+    },
+    {
+        id: 9,
+        name: "Hazelnut",
+        description: "Minuman creamy dengan rasa kacang yang lembut",
+        price: 8000,
+        image: "hazelnut.jpg",
+        category: "Milkshake"
+    }
+];
+
+// Gallery Data
+const galleryItems = [
+    { id: 1, image: "kedai.jpg"},
+];
+
+// Testimonials Data
+const testimonials = [
+    {
+        id: 1,
+        name: "Siti Nurhaliza",
+        role: "Pelanggan Setia",
+        avatar: "S",
+        rating: 5,
+        text: "Thai Tea di S-TEA benar-benar the best! Rasanya authentic dan harganya sangat terjangkau. Sudah jadi langganan saya setiap hari!"
+    },
+    {
+        id: 2,
+        name: "Budi Santoso",
+        role: "Mahasiswa",
+        avatar: "B",
+        rating: 5,
+        text: "Tempatnya nyaman banget buat nongkrong sambil ngerjain tugas. Green Tea-nya seger dan bikin fokus. Recommended!"
+    },
+    {
+        id: 3,
+        name: "Rina Permata",
+        role: "Ibu Rumah Tangga",
+        avatar: "R",
+        rating: 5,
+        text: "Anak-anak suka banget sama Choco Milk-nya. Pelayanannya ramah dan minumannya selalu fresh. Pasti balik lagi!"
+    },
+    {
+        id: 4,
+        name: "Ahmad Fauzi",
+        role: "Karyawan",
+        avatar: "A",
+        rating: 5,
+        text: "Cappucino di sini mantap! Pas buat menemani kerja. Harga terjangkau dan kualitas premium. Two thumbs up!"
+    },
+    {
+        id: 5,
+        name: "Dewi Lestari",
+        role: "Pengusaha",
+        avatar: "D",
+        rating: 5,
+        text: "S-TEA selalu jadi pilihan untuk meeting santai dengan klien. Suasananya cozy dan minumannya enak semua!"
+    }
+];
+
+// Cart Management
+let cart = [];
+let currentTestimonial = 0;
+let currentPage = 'home';
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    loadCart();
+    renderPopularMenu();
+    renderFullMenu();
+    renderGallery();
+    renderTestimonials();
+    updateCartBadge();
+    updateOrderButton();
+});
+
+// Navigation
+function navigateTo(page) {
+    // Hide all pages
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    
+    // Show selected page
+    document.getElementById(page).classList.add('active');
+    
+    // Update navbar links
+    document.querySelectorAll('.navbar-link').forEach(link => link.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    currentPage = page;
+    
+    // Render cart if on pesan page
+    if (page === 'pesan') {
+        renderCart();
+    }
+}
+
+// Render Popular Menu (Home Page)
+function renderPopularMenu() {
+    const grid = document.getElementById('popularMenuGrid');
+    const popularItems = menuItems.filter(item => item.popular);
+    
+    grid.innerHTML = popularItems.map(item => createMenuCard(item)).join('');
+}
+
+// Render Full Menu (Menu Page)
+function renderFullMenu() {
+    const grid = document.getElementById('fullMenuGrid');
+    grid.innerHTML = menuItems.map(item => createMenuCard(item)).join('');
+}
+
+// Create Menu Card HTML
+function createMenuCard(item) {
+    return `
+        <div class="menu-card">
+            <div class="menu-image-container">
+                <div class="menu-image">
+                    <img src="${item.image}" alt="${item.name}">
+                </div>
+                ${item.popular ? '<span class="badge">Populer</span>' : ''}
+            </div>
+            <div class="menu-card-content">
+                <div class="menu-card-header">
+                    <div>
+                        <h3 class="menu-card-title">${item.name}</h3>
+                        <span class="badge-category">${item.category}</span>
+                    </div>
+                </div>
+                <p class="menu-description">${item.description}</p>
+                <div class="menu-price">Rp ${formatPrice(item.price)}</div>
+                <button class="btn btn-primary btn-full" onclick="addToCart(${item.id})">
+                    ➕ Tambah ke Pesanan
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+// Render Gallery
+const grid = document.getElementById('galleryGrid'); 
+// Pastikan ID ini sesuai dengan HTML kamu
+
+function renderGallery() {
+    grid.innerHTML = galleryItems.map(item => `
+        <div class="gallery-item">
+            <img src="${item.image}" alt="${item.caption}">
+            <p class="gallery-caption">${item.caption}</p>
+        </div>
+    `).join('');
+}
+
+// Render Testimonials
+function renderTestimonials() {
+    const slider = document.getElementById('testimonialSlider');
+    const dotsContainer = document.getElementById('testimonialDots');
+    
+    slider.innerHTML = testimonials.map(t => {
+        const stars = '⭐'.repeat(t.rating);
+        return `
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <div class="testimonial-stars">${stars}</div>
+                    <p class="testimonial-text">"${t.text}"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">${t.avatar}</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">${t.name}</div>
+                            <div class="testimonial-role">${t.role}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    dotsContainer.innerHTML = testimonials.map((_, i) => 
+        `<button class="testimonial-dot ${i === 0 ? 'active' : ''}" onclick="goToTestimonial(${i})"></button>`
+    ).join('');
+    
+    updateTestimonialButtons();
+}
+
+// Testimonial Navigation
+function nextTestimonial() {
+    if (currentTestimonial < testimonials.length - 1) {
+        currentTestimonial++;
+        updateTestimonialSlider();
+    }
+}
+
+function previousTestimonial() {
+    if (currentTestimonial > 0) {
+        currentTestimonial--;
+        updateTestimonialSlider();
+    }
+}
+
+function goToTestimonial(index) {
+    currentTestimonial = index;
+    updateTestimonialSlider();
+}
+
+function updateTestimonialSlider() {
+    const slider = document.getElementById('testimonialSlider');
+    slider.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+    
+    document.querySelectorAll('.testimonial-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentTestimonial);
+    });
+    
+    updateTestimonialButtons();
+}
+
+function updateTestimonialButtons() {
+    document.getElementById('prevBtn').disabled = currentTestimonial === 0;
+    document.getElementById('nextBtn').disabled = currentTestimonial === testimonials.length - 1;
+}
+
+// Add to Cart
+function addToCart(itemId) {
+    const item = menuItems.find(m => m.id === itemId);
+    const existingItem = cart.find(c => c.id === itemId);
+    
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({ ...item, quantity: 1 });
+    }
+    
+    saveCart();
+    updateCartBadge();
+    updateOrderButton();
+    showToast(`${item.name} ditambahkan ke pesanan`);
+    
+    if (currentPage === 'pesan') {
+        renderCart();
+    }
+}
+
+// Remove from Cart
+function removeFromCart(itemId) {
+    cart = cart.filter(item => item.id !== itemId);
+    saveCart();
+    renderCart();
+    updateCartBadge();
+    updateOrderButton();
+    showToast('Item dihapus dari pesanan');
+}
+
+// Update Quantity
+function updateQuantity(itemId, change) {
+    const item = cart.find(c => c.id === itemId);
+    if (item) {
+        item.quantity = Math.max(1, item.quantity + change);
+        saveCart();
+        renderCart();
+        updateCartBadge();
+    }
+}
+
+// Render Cart
+function renderCart() {
+    const container = document.getElementById('cartItems');
+    const totalElement = document.getElementById('totalAmount');
+    
+    if (cart.length === 0) {
+        container.innerHTML = '<p class="empty-cart">Keranjang Anda masih kosong. <a href="#" onclick="navigateTo(\'menu\'); return false;" style="color: var(--color-accent)">Pilih menu di sini</a></p>';
+        totalElement.textContent = 'Rp 0';
+        return;
+    }
+    
+    let total = 0;
+    container.innerHTML = cart.map(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        
+        return `
+            <div class="cart-item">
+                <div class="cart-item-image">${item.emoji}</div>
+                <div class="cart-item-details">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-price">Rp ${formatPrice(item.price)}</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                        <span class="quantity-value">${item.quantity}</span>
+                        <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                    </div>
+                </div>
+                <div class="cart-item-right">
+                    <div class="cart-item-total">Rp ${formatPrice(itemTotal)}</div>
+                    <button class="remove-btn" onclick="removeFromCart(${item.id})" title="Hapus">🗑</button>
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    totalElement.textContent = `Rp ${formatPrice(total)}`;
+}
+
+// Send to WhatsApp
+function sendToWhatsApp() {
+    if (cart.length === 0) {
+        showToast('Keranjang kosong!', true);
+        return;
+    }
+    
+    let message = '*PESANAN BARU S-TEA 🍃*\n\n';
+    message += '*Detail Pesanan:*\n';
+    message += '━━━━━━━━━━━━━━━\n';
+    
+    let total = 0;
+    cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        message += `${index + 1}. ${item.name}\n`;
+        message += `   ${item.quantity}x Rp ${formatPrice(item.price)} = Rp ${formatPrice(itemTotal)}\n\n`;
+    });
+    
+    message += '━━━━━━━━━━━━━━━\n';
+    message += `*TOTAL: Rp ${formatPrice(total)}*\n\n`;
+    message += '_Terima kasih telah memesan di S-TEA! 🙏_';
+    
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${ADMIN_WHATSAPP}?text=${encodedMessage}`;
+    
+    window.open(whatsappUrl, '_blank');
+    
+    showToast('Mengarahkan ke WhatsAp');
+}
+
+// Update Cart Badge
+function updateCartBadge() {
+    const badge = document.getElementById('cartBadge');
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    badge.textContent = totalItems;
+    badge.style.display = totalItems > 0 ? 'flex' : 'none';
+}
+
+// Update Order Button
+function updateOrderButton() {
+    const btn = document.getElementById('orderBtn');
+    if (btn) {
+        btn.disabled = cart.length === 0;
+    }
+}
+
+// Save/Load Cart
+function saveCart() {
+    localStorage.setItem('steaCart', JSON.stringify(cart));
+}
+
+function loadCart() {
+    const saved = localStorage.getItem('steaCart');
+    if (saved) {
+        cart = JSON.parse(saved);
+    }
+}
+
+// Utilities
+function formatPrice(price) {
+    return price.toLocaleString('id-ID');
+}
+
+function showToast(message, isError = false) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.style.backgroundColor = isError ? 'hsl(0, 84%, 60%)' : 'var(--color-foreground)';
+    toast.classList.add('show');
+    
+    setTimeout(() => toast.classList.remove('show'), 3000);
+}
+    </script>
+</body> 
+</html>
+    
